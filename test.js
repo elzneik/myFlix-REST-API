@@ -33,17 +33,16 @@ let student = [
       }
 ];
 
-        // get single student
+        // get list - all students
     app.get("/students", (req,res) => {
         res.json(student);
-    })
-        // get student name
+});
+        // get list - single student
     app.get("/students/:name", (req, res) => {
         res.json(students.find((student) =>
         {return student.name === req.params.name }));
 });
-
-        // adds data fro a new student to our list of students
+        // adds data - for single student
     app.post("/students", (req, res) => {
         let newStudent = req.body;
 
@@ -57,7 +56,7 @@ let student = [
         }
 });
 
-    // delete a student from our list
+    // delete student - from list
     app.delete("/students/:id", (req, res) => {
         let student = student.find((student) => {
             return student.id === req.params.id 
@@ -71,7 +70,7 @@ let student = [
     }
 });  
 
-    // update the "grade" of a student by student name/class name
+    // update - "grade" of a student by student name/class name
     app.put("/students/:name/:class/:grade", (req, res) => {
         let student = students.find((student) => {return student.name === req.params.name
     });
@@ -89,6 +88,7 @@ let student = [
     let student = students.find((student) => {
         return student.name === req.params.name
     });
+    
     if(student){
         let classesGrades = Object.values(student.classes);
         let sumOfGrades = 0;
