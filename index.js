@@ -33,7 +33,7 @@ let student = [
       }
 ];
 
-let movies = [
+let movie = [
     {
      "Title": "Forrest Gump",
      "Description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
@@ -207,7 +207,7 @@ app.get("/movies", (req, res) => {
 
 
 app.listen(8080, () => {
-    console.log("Your app is listening on port 8080"); 
+    console.log("Listening on port 8080"); 
 });
 
 
