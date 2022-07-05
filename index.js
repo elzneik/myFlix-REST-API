@@ -6,7 +6,7 @@ const app = express;
 app.use(bodyParser.json());
 
 
-let user = [
+let users = [
     {
         id: 1,
         name: 'Jessica Drake',
@@ -188,6 +188,35 @@ let movies = [
 ]
 
 /// MOVIE Task
+
+// CREATE
+app.put("/users", (req, res) => {
+    const newUser = req.body;
+
+    if (newUser.name) {
+        newUser.id = uuid.v4();
+        users.push(newUser);
+        res.status(201).json(newUser);
+    } else {
+        res.status(400).send("Users need names!");
+    }
+});
+
+// UPDATE
+app.update("/users/:id", (req, res) => {
+    const { id } = req.params;
+    const updatedUser = req.body;
+
+    let user = users.find( user => user.id == id);
+
+    if(user) {
+        user.name = updatedUser.name;
+        res.status(200).json(user);
+    } else {
+        res.status(400).send("No such user!")
+    }
+});
+
 // READ
 app.get("/movies", (req, res) => {
     res.status(200).json(movies);
@@ -230,6 +259,8 @@ app.get("/movies/directors/:directorName", (req, res) => {
         res.status(400).send("No such director!");
     }
 });
+
+
 
 app.listen(8080, () => {
     console.log("Listening on port 8080");
