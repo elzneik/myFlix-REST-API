@@ -10,17 +10,17 @@ let users = [
     {
         id: 1,
         name: 'Jessica Drake',
-        favoriteMoview: []
+        favoriteMovie: []
       },
       {
         id: 2,
         name: 'Ben Cohen',
-        favoriteMoview: ["Pulp Fiction"]
+        favoriteMovie: ["Pulp Fiction"]
       },
       {
         id: 3,
         name: 'Lisa Downing',
-        favoriteMoview: ["Harry Potter, Notting Hill"]
+        favoriteMovie: ["Harry Potter, Notting Hill"]
       }
 ];
 
@@ -213,9 +213,46 @@ app.put("/users/:id", (req, res) => {
         user.name = updatedUser.name;
         res.status(200).json(user);
     } else {
+        res.status(400).send("No such user!");
+    }
+});
+
+// CREATE
+app.post("/users/:id/:movieTitle", (req, res) => {
+    const { id, movieTitle } = req.params;
+
+    let user = users.find( user => user.id == id);
+
+    if(user) {
+        user.favoriteMovie.push(movieTitle);
+        res.status(200).send("${movieTitle} has been added to user ${id}'s array");
+    } else {
         res.status(400).send("No such user!")
     }
 });
+
+
+// DELETE
+app.delete("/users/:id/:movieTitle", (req, res) => {
+    const { id, movieTitle } = req.params; // pull from document
+
+    let user = users.find( user => user.id == id); // check if user excists
+
+    if(user) {
+        user.favoriteMovie = user.favoriteMovie.filter( title => title !== movietitle);
+        res.status(200).send("${movieTitle} has been deleted from user ${id}'s array");
+    } else {
+        res.status(400).send("No such user!");
+    }
+});
+
+
+
+
+
+
+
+
 
 // READ
 app.get("/movies", (req, res) => {
