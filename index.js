@@ -6,30 +6,21 @@ const app = express;
 app.use(bodyParser.json());
 
 
-let student = [
+let user = [
     {
         id: 1,
         name: 'Jessica Drake',
-        classes: {
-          biology: 95,
-          algebra: 92
-        }
+        favoriteMoview: []
       },
       {
         id: 2,
         name: 'Ben Cohen',
-        classes: {
-          biology: 95,
-          algebra: 92
-        }
+        favoriteMoview: ["Pulp Fiction"]
       },
       {
         id: 3,
         name: 'Lisa Downing',
-        classes: {
-          biology: 95,
-          algebra: 92
-        }
+        favoriteMoview: ["Harry Potter, Notting Hill"]
       }
 ];
 
