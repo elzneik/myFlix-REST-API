@@ -33,7 +33,7 @@ let student = [
       }
 ];
 
-let movie = [
+let movies = [
     {
      "Title": "Forrest Gump",
      "Description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",
@@ -199,10 +199,13 @@ let movie = [
 /// MOVIE Task
 // READ
 app.get("/movies", (req, res) => {
-    res.status(200).json(movie);
+    res.status(200).json(movies);
 });
 
-
+app.get("/movies/:name", (req, res) => {
+    res.json(movies.find((Title) =>
+    { return movies.Title === req.params.Title}));
+});
 
 
 
