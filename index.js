@@ -162,7 +162,7 @@ let movies = [
         },
         "Director": {
            "Name": "Chris Columbus",
-           "Bio": "Born in Pennsylvania and raised in Ohio, Chris Columbus was first inspired to make movies after seeing "The Godfather" at age 15. After enrolling at NYU film school, he sold his first screenplay (never produced) while a sophomore there. After graduation Columbus tried to sell his fourth script, "Gremlins", with no success, until Steven Spielberg optioned it;",
+           "Bio": "Born in Pennsylvania and raised in Ohio, Chris Columbus was first inspired to make movies after seeing 'The Godfather' at age 15. After enrolling at NYU film school, he sold his first screenplay (never produced) while a sophomore there. After graduation Columbus tried to sell his fourth script, 'Gremlins', with no success, until Steven Spielberg optioned it;",
            "Birth": 1958
         }
         "ImageURL": "https://www.imdb.com/title/tt0241527/mediaviewer/rm2113437952?ref_=ttmi_mi_all_sf_5",
@@ -184,10 +184,7 @@ let movies = [
         "ImageURL": "https://www.imdb.com/title/tt0133093/mediaviewer/rm2182645504?ref_=ttmi_mi_all_sf_3",
         "Featured": true
        },
-
 ]
-
-/// MOVIE Task
 
 // CREATE
 app.post("/users", (req, res) => {
@@ -231,7 +228,6 @@ app.post("/users/:id/:movieTitle", (req, res) => {
     }
 });
 
-
 // DELETE
 app.delete("/users/:id/:movieTitle", (req, res) => {
     const { id, movieTitle } = req.params; // pull from document
@@ -261,20 +257,14 @@ app.delete("/users/:id", (req, res) => {
     }
 });
 
-
-
-
-
-
-
 // READ
-app.get("/movies", (req, res) => {
-    res.status(200).json(movies);
-});
+    app.get("/movies", (req, res) => {
+        res.status(200).json(movies);
+    });
 
-app.get("/movies/:title", (req, res) => {
-    res.json(movies.find((Title) =>
-    { return movies.Title === req.params.Title}));
+    app.get("/movies/:title", (req, res) => {
+        res.json(movies.find((Title) =>
+        { return movies.Title === req.params.Title}));
 });
 
 app.get("/movies/:title", (req, res) => {
@@ -310,10 +300,8 @@ app.get("/movies/directors/:directorName", (req, res) => {
     }
 });
 
-
-
-app.listen(8080, () => {
-    console.log("Listening on port 8080");
+    app.listen(8080, () => {
+        console.log("Listening on port 8080");
 });
 
 
