@@ -202,12 +202,20 @@ app.get("/movies", (req, res) => {
     res.status(200).json(movies);
 });
 
-app.get("/movies/:name", (req, res) => {
+app.get("/movies/:title", (req, res) => {
     res.json(movies.find((Title) =>
     { return movies.Title === req.params.Title}));
 });
 
+app.get("/movies/:title", (req, res) => {
+    const { title } = req.params;
+    const movie = movies.find( movie => movie.Title === title ); // method find takes a function as an argument
 
+    if (movie) {
+        res.status(200).json(movie);
+    } else {
+        res.status(400).send("No such movie!");
+    }
 
 app.listen(8080, () => {
     console.log("Listening on port 8080");
