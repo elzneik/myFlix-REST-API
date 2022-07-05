@@ -199,7 +199,7 @@ let movie = [
 /// MOVIE Task
 // READ
 app.get("/movies", (req, res) => {
-    res.status(200).json(movies);
+    res.status(200).json(movie);
 });
 
 
