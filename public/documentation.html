@@ -1,100 +1,104 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+  <head>
+    <!-- meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-</head>
-<body>
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
+  </head>
 
-<h2>Movie app myFlix REST API documentation summary</h2>
+  <body>
 
-<table>
-  <tr>
-    <th>Request</th>
-    <th>URL</th>
-    <th>HTTP method</th>
-    <th>Request body data format</th>
-    <th>Response body data format</th>
-  </tr>
-  <tr>
-    <td>Return a list of ALL movies to the user</td>
-    <td>/movies</td>
-    <td>GET</td>
-    <td>None</td>
-    <td>A JSON object holding data about all the movies</td>
-  </tr>
-  <tr>
-    <td>Return data about a single movie by title to the user</td>
-    <td>/movies/title</td>
-    <td>GET</td>
-    <td>None</td>
-    <td>A JSON object holding data for a single movie. A JSON object about description, genre, director, image URL, whether it's featured or not</td>
-  </tr>
-  <tr>
-    <td>Return data about a genre (description) by name/title (e.g., “Thriller")</td>
-    <td>movies/genre/genreName</td>
-    <td>GET</td>
-    <td>None</td>
-    <td>A JSON object holding data for a genre</td>
-  </tr>
-  <tr>
-    <td>Return data about a director (bio, birth year, death year) by name</td>
-    <td>movies/director/directorName</td>
-    <td>GET</td>
-    <td>None</td>
-    <td>A JSON object holding data for a director</td>
-  </tr>
-  <tr>
-    <td>Allow new users to register</td>
-    <td>/users</td>
-    <td>POST</td>
-    <td>Definiton</td>
-    <td>User information such as Name, Last Name, Age, Email, Password</td>
-  </tr>
-  <tr>
-    <td>Allow users to update their user info (username)</td>
-    <td>/user/id</td>
-    <td>PUT</td>
-    <td>Definition</td>
-    <td>User can change profile fields, focus on name</td>
-  </tr>
-  <tr>
-    <td>Allow users to add a movie to their list of favorites</td>
-    <td>/user/id/movieTitle</td>
-    <td>POST</td>
-    <td>None</td>
-    <td>Showing only a text that a movie has been added—more on this later</td>
-  </tr>
-  <tr>
-    <td>Allow users to remove a movie from their list of favorites</td>
-    <td>/user/id/movieTitle</td>
-    <td>DELETE</td>
-    <td>None</td>
-    <td>Showing only a text that a movie has been added—more on this later</td>
-  </tr>
-  <tr>
-    <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)</td>
-    <td>/user/id</td>
-    <td>DELETE</td>
-    <td>None</td>
-    <td>Showing only a text that a movie has been added—more on this later</td>
-  </tr>
-</table>
+    <h2>Movie app myFlix REST API documentation summary</h2>
 
-</body>
+    <table>
+      <tr>
+        <th>Request</th>
+        <th>URL</th>
+        <th>HTTP method</th>
+        <th>Request body data format</th>
+        <th>Response body data format</th>
+      </tr>
+      <tr>
+        <td>Return a list of ALL movies to the user</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about all the movies</td>
+      </tr>
+      <tr>
+        <td>Return data about a single movie by title to the user</td>
+        <td>/movies/title</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data for a single movie. A JSON object about description, genre, director, image URL, whether it's featured or not</td>
+      </tr>
+      <tr>
+        <td>Return data about a genre (description) by name/title (e.g., “Thriller")</td>
+        <td>movies/genre/genreName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data for a genre</td>
+      </tr>
+      <tr>
+        <td>Return data about a director (bio, birth year, death year) by name</td>
+        <td>movies/director/directorName</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data for a director</td>
+      </tr>
+      <tr>
+        <td>Allow new users to register</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>Definiton</td>
+        <td>User information such as Name, Last Name, Age, Email, Password</td>
+      </tr>
+      <tr>
+        <td>Allow users to update their user info (username)</td>
+        <td>/user/id</td>
+        <td>PUT</td>
+        <td>Definition</td>
+        <td>User can change profile fields, focus on name</td>
+      </tr>
+      <tr>
+        <td>Allow users to add a movie to their list of favorites</td>
+        <td>/user/id/movieTitle</td>
+        <td>POST</td>
+        <td>None</td>
+        <td>Showing only a text that a movie has been added—more on this later</td>
+      </tr>
+      <tr>
+        <td>Allow users to remove a movie from their list of favorites</td>
+        <td>/user/id/movieTitle</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>Showing only a text that a movie has been added—more on this later</td>
+      </tr>
+      <tr>
+        <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)</td>
+        <td>/user/id</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>Showing only a text that a movie has been added—more on this later</td>
+      </tr>
+    </table>
+
+  </body>
 </html>
