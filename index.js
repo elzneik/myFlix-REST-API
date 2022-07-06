@@ -235,7 +235,7 @@ app.delete("/users/:id/:movieTitle", (req, res) => {
     let user = users.find( user => user.id == id); // check if user excists
 
     if(user) {
-        user.favoriteMovie = user.favoriteMovie.filter( title => title !== movietitle);
+        user.favoriteMovie = user.favoriteMovie.filter( title => title !== movieTitle);
         res.status(200).send("${movieTitle} has been deleted from user ${id}'s array");
     } else {
         res.status(400).send("No such user!");
