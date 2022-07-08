@@ -3,7 +3,7 @@ bodyParser = require("body-parser"),
 uuid = require("uuid");
 
 const app = express ();
-// app.use(express.static("public"));
+app.use(express.static("public"));
 app.use(bodyParser.json());
 
 
@@ -274,8 +274,8 @@ app.get("/movies/:title", (req, res) => {
         // res.status(200).json(movie);
     // } else {
         // res.status(400).send("No such movie!");
-    }
-});
+    });
+// });
 
 app.get("/movies/genre/:genreName", (req, res) => {
     const { genreName } = req.params;
