@@ -264,13 +264,16 @@ app.delete("/users/:id", (req, res) => {
     });
 
 app.get("/movies/:title", (req, res) => {
-    const { title } = req.params;
-    const movie = movies.find( movie => movie.Title === title ); // method find takes a function as an argument
+    res.status(200).send("This is a movie.");
 
-    if (movie) {
-        res.status(200).json(movie);
-    } else {
-        res.status(400).send("No such movie!");
+
+    // const { title } = req.params;
+    // const movie = movies.find( movie => movie.Title === title ); // method find takes a function as an argument
+
+    // if (movie) {
+        // res.status(200).json(movie);
+    // } else {
+        // res.status(400).send("No such movie!");
     }
 });
 
