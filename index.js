@@ -263,6 +263,7 @@ app.delete("/users/:id", (req, res) => {
         res.status(200).json(movies);
     });
 
+// READ
 app.get("/movies/:title", (req, res) => {
     // res.status(200).send("This is a movie.");
     // res.status(200).json(movies);
@@ -278,6 +279,7 @@ app.get("/movies/:title", (req, res) => {
     }
 });
 
+// READ
 app.get("/movies/genre/:genreName", (req, res) => {
     const { genreName } = req.params;
     const genre = movies.find( movie => movie.Genre.Name === genreName ).Genre; // want return the property Genre
@@ -289,6 +291,7 @@ app.get("/movies/genre/:genreName", (req, res) => {
     }
 });
 
+// READ
 app.get("/movies/directors/:directorName", (req, res) => {
     const { directorName } = req.params;
     const director = movies.find( movie => movie.Director.Name === directorName ).Director;
