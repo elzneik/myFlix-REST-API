@@ -42,6 +42,7 @@
         <td>Return a list of ALL movies to the user</td>
         <td>/movies</td>
         <td>GET</td>
+        <td>localhost:8080/movies</td>
         <td>None</td>
         <td>A JSON object holding data about all the movies</td>
       </tr>
@@ -49,6 +50,7 @@
         <td>Return data about a single movie by title to the user</td>
         <td>/movies/title</td>
         <td>GET</td>
+        <td>localhost:8080/movies/Forrest%20Gump</td>
         <td>None</td>
         <td>A JSON object holding data for a single movie. A JSON object about description, genre, director, image URL, whether it's featured or not</td>
       </tr>
@@ -56,6 +58,7 @@
         <td>Return data about a genre (description) by name/title (e.g., “Thriller")</td>
         <td>movies/genre/genreName</td>
         <td>GET</td>
+        <td>localhost:8080/movies/genre/Crime</td>
         <td>None</td>
         <td>A JSON object holding data for a genre</td>
       </tr>
@@ -63,6 +66,7 @@
         <td>Return data about a director (bio, birth year, death year) by name</td>
         <td>movies/director/directorName</td>
         <td>GET</td>
+        <td>localhost:8080/movies/directors/Chris%20Columbus</td>
         <td>None</td>
         <td>A JSON object holding data for a director</td>
       </tr>
@@ -70,6 +74,7 @@
         <td>Allow new users to register</td>
         <td>/users</td>
         <td>POST</td>
+        <td>localhost:8080/users</td>
         <td>Definiton</td>
         <td>User information such as Name, Last Name, Age, Email, Password</td>
       </tr>
@@ -77,6 +82,7 @@
         <td>Allow users to update their user info (username)</td>
         <td>/user/id</td>
         <td>PUT</td>
+        <td>localhost:8080/users/1</td>
         <td>Definition</td>
         <td>User can change profile fields, focus on name</td>
       </tr>
@@ -84,6 +90,7 @@
         <td>Allow users to add a movie to their list of favorites</td>
         <td>/user/id/movieTitle</td>
         <td>POST</td>
+        <td>localhost:8080/users/1/The%20Fountain</td>
         <td>None</td>
         <td>Showing only a text that a movie has been added—more on this later</td>
       </tr>
@@ -91,6 +98,7 @@
         <td>Allow users to remove a movie from their list of favorites</td>
         <td>/user/id/movieTitle</td>
         <td>DELETE</td>
+        <td>localhost:8080/users/2/Pulp%20Fiction</td>
         <td>None</td>
         <td>Showing only a text that a movie has been added—more on this later</td>
       </tr>
@@ -98,6 +106,7 @@
         <td>Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)</td>
         <td>/user/id</td>
         <td>DELETE</td>
+        <td>localhost:8080/users/2</td>
         <td>None</td>
         <td>Showing only a text that a movie has been added—more on this later</td>
       </tr>
