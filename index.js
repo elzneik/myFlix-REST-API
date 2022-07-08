@@ -264,7 +264,8 @@ app.delete("/users/:id", (req, res) => {
     });
 
 app.get("/movies/:title", (req, res) => {
-    res.status(200).send("This is a movie.");
+    // res.status(200).send("This is a movie.");
+    res.status(200).json(movies);
 
 
     // const { title } = req.params;
