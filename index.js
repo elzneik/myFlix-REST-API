@@ -3,7 +3,7 @@ bodyParser = require("body-parser"),
 uuid = require("uuid");
 
 const app = express ();
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(bodyParser.json());
 
 
