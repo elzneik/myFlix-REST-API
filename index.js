@@ -123,7 +123,7 @@ app.get("/users", (req, res) => {
 
 
 // Task6: Update a users info by its Username
-app.update("/users/:Username", (req, res) => {
+app.patch("/users/:Username", (req, res) => {
     Users.findOneAndUpdate({Username: req.params.Username},
         { $set:{
             Username: req.body.Username,
@@ -183,7 +183,7 @@ app.delete("/users/:Username/movie/:MovieID", (req, res) => {
 // Task9: remove user from user list
 app.delete("/users/:Username", (req, res) => {
     Users.findOneAndRemove({Username: req.params.Username})
-        .then((user) => 
+        .then((user) => {
         if (!user) {
             res.status(400).send(req.params.Username + " does not exist.");
         }

@@ -6,13 +6,13 @@ let movieSchema = mongoose.Schema({
     Genre: {
         Name: String,
         Description: String
-    }
+    },
     Director: {
         Name: String,
         Bio: String,
         Birthyear: String,
         Deathyear: String
-    }
+    },
     Actors: [String],
     ImageURL: String,
     Featured: Boolean
