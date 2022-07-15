@@ -52,7 +52,20 @@
         <td>GET</td>
         <td>localhost:8080/movies/Forrest%20Gump</td>
         <td>None</td>
-        <td>A JSON object holding data for a single movie. A JSON object about description, genre, director, image URL, whether it's featured or not</td>
+        <td>A JSON object holding data for a single movie. A JSON object about description, genre, director, image URL, whether it's featured or not
+          <pre>
+            <code>
+                {
+                id: '',
+                title: '',
+                description: '',
+                genre: '',
+                director: '',
+                img: ''
+                }
+            </code>
+          </pre>
+        </td>
       </tr>
       <tr>
         <td>Return data about a genre (description) by name/title (e.g., “Thriller")</td>
@@ -60,7 +73,16 @@
         <td>GET</td>
         <td>localhost:8080/movies/genre/Crime</td>
         <td>None</td>
-        <td>A JSON object holding data for a genre</td>
+        <td>A JSON object holding data for a genre
+          <pre>
+            <code>
+                {
+                name:'',
+                description: ''
+                }
+            </code>
+          </pre>
+        </td>
       </tr>
       <tr>
         <td>Return data about a director (bio, birth year, death year) by name</td>
@@ -68,15 +90,51 @@
         <td>GET</td>
         <td>localhost:8080/movies/directors/Chris%20Columbus</td>
         <td>None</td>
-        <td>A JSON object holding data for a director</td>
+        <td>A JSON object holding data for a director
+          <pre>
+            <code>
+                {
+                name: '',
+                biography: '',
+                date of birth: '',
+                date of death: ''
+                }
+            </code>
+          </pre>
+        </td>
       </tr>
       <tr>
         <td>Allow new users to register</td>
         <td>/users</td>
         <td>POST</td>
         <td>localhost:8080/users</td>
-        <td>Definiton</td>
-        <td>User information such as Name, Last Name, Age, Email, Password</td>
+        <td>A JSON object containing data about the user to add, structured so:
+          <pre>
+               <code>
+                   {
+                   username: '',
+                   password: '',
+                   email: '',
+                   birthday: '',
+                   favoriteMovies: []
+                   }
+               </code>
+           </pre>
+        </td>
+        <td>User information such as Name, Last Name, Age, Email, Password
+          <pre>
+            <code>
+              {
+                id: '',
+                username: '',
+                password:'',
+                email: '',
+                birthday: '',
+                favoriteMovies: []
+                }
+            </code>
+          </pre>
+        </td>
       </tr>
       <tr>
         <td>Allow users to update their user info (username)</td>
@@ -84,7 +142,20 @@
         <td>PUT</td>
         <td>localhost:8080/users/1</td>
         <td>Definition</td>
-        <td>User can change profile fields, focus on name</td>
+        <td>User can change profile fields, focus on name
+          <pre>
+            <code>
+                {
+                id: '',
+                username: '',
+                password: '',
+                email: '',
+                birthday: '',
+                favoriteMovies: []
+                }
+            </code>
+          </pre>
+        </td>
       </tr>
       <tr>
         <td>Allow users to add a movie to their list of favorites</td>
