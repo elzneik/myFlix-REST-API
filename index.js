@@ -11,6 +11,10 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// let auth = require('./auth')(app); // code for authentification
+// const passport = require('passport');
+// require('./passport');
+
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -19,7 +23,7 @@ mongoose.connect('mongodb://localhost:27017/myFlixDB',
 
 
 // Task1: Get all movies
-app.get("/movies", (req, res) => {
+app.get("/movies", (req, res) => { // passport.authenticate('jwt', { session: false }),
     Movies.find()
         .then((movies) => {
             res.status(201).json(movies)
