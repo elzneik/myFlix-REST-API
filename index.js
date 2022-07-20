@@ -93,7 +93,7 @@ app.post("/users", (req,res)=>{
                 Users
                     .create({
                         Username: req.body.Username,
-                        Passowrd: req.body.Password,
+                        Password: req.body.Password,
                         Email: req.body.Email,
                         Birthday: req.body.Birthday
                     })
