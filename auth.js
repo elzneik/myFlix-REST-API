@@ -1,14 +1,14 @@
 /* create a new endpoint for registered users to log in
 -----------------------------------------------------------*/
 
-const JWTSecret ="your_jwt_secret"; /* code checks "local strategy" from passport.js */
+const JWTSecret ="23456erfhjlökjLKJ98765"; /* code checks "local strategy" from passport.js */
 
 const jwt = require("jsonwebtoken"),
     passport = require("passport");
 
 require("./passport");
 
-let generateJWTToken = (user) => {  /* create a JWT Token */
+let generateJWTToken = (user) => {  /* creates a JWT Token */
     return jwt.sign(user, JWTSecret, {
         subject: user.Username,
         expiresIn: "7d",
