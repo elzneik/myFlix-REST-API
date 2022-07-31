@@ -60,7 +60,7 @@ app.get("/movies/:title", passport.authenticate('jwt', {session: false}), (req, 
         .catch((err) => {
             console.error(err);
             res.status(500).send("Error: " + err);
-        });
+        })
 });
 
 // Task3: Get data about a genre
