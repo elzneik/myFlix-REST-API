@@ -41,6 +41,9 @@ const Users = Models.User;
 mongoose.connect(process.env.CONNECTION_URI, 
     { useNewUrlParser: true, useUnifiedTopology: true });
 
+    app.get('/', (req, res) => {
+        res.send('Welcome to MyFlix!');
+      });
 
 // Task1: Get all movies
 app.get("/movies", passport.authenticate('jwt', {session: false}), (req, res) => { // passport.authenticate('jwt', { session: false }),
