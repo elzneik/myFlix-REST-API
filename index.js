@@ -46,10 +46,10 @@ mongoose.connect(process.env.CONNECTION_URI,
       });
 
 // Task1: Get all movies
-app.get("/movies", passport.authenticate('jwt', {session: false}), (req, res) => { // passport.authenticate('jwt', { session: false }),
+app.get("/movies", function (req, res) { // passport.authenticate('jwt', {session: false}), (req, res) => { // passport.authenticate('jwt', { session: false }),
     Movies.find()
         .then((movies) => {
-            res.status(201).json(movies)
+            res.status(201).json(movies);
         })
         .catch((err) => {
             res.status(500).send("Error: " + err);
