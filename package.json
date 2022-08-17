@@ -2,6 +2,7 @@
   "name": "myflix-rest-api",
   "version": "1.0.0",
   "description": "",
+  "main": "test.js",
   "scripts": {
     "start": "node index.js"
   },
