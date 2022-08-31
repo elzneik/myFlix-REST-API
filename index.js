@@ -16,8 +16,8 @@ app.use(cors());
 
 const { check, validationResult } = require('express-validator');
 
-/* List of allowed domains
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+// List of allowed domains
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'http://testsite.com'];
 
 app.use(cors({
    wi: (origin, callback) => {
@@ -29,7 +29,6 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
 
 let auth = require('./auth')(app); // code for authentification
 const passport = require('passport');
