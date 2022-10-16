@@ -30,22 +30,36 @@ app.use(cors({
   }
 }));
 
-let auth = require('./auth')(app); // code for authentification
+// code for authentification
+let auth = require('./auth')(app); 
+
+// Require passport module & import passport.js file
 const passport = require('passport');
 require('./passport');
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
+// PROD mode DB
 mongoose.connect(process.env.CONNECTION_URI, 
     { useNewUrlParser: true, useUnifiedTopology: true });
 
+/**
+ * GET: Returns welcome message fro '/' request URL
+ * @returns Welcome message
+ */
     app.get('/', (req, res) => {
         res.send('Welcome to MyFlix!');
       });
 
-// Task1: Get all movies
-// app.get("/movies", function (req, res) { // passport.authenticate('jwt', {session: false}), (req, res) => { // passport.authenticate('jwt', { session: false }),
+/**CRUD */
+// READ all movies
+/**
+ * GET: returns a list of ALL movies to the user
+ * Request body: Bearer Token
+ * @returns array of movie objects
+ * @ requires passport
+ */
 app.get("/movies", passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.find()
         .then((movies) => {
@@ -56,7 +70,14 @@ app.get("/movies", passport.authenticate('jwt', {session: false}), (req, res) =>
         });
 });
 
-// Task2: Get data about a single movie by title to user
+// READ a single movie by title
+/**
+ * GET: Returns data (description, genre, director, image URL, whether it's featured or not) about a single movie by title to the user
+ * REquest body: Bearer token
+ * @param Title (of movie)
+ * @returns movie object
+ * @requires passport
+ */
 app.get("/movies/:title", passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.findOne({Title: req.params.title})
         .then((movie) => {
@@ -68,7 +89,14 @@ app.get("/movies/:title", passport.authenticate('jwt', {session: false}), (req, 
         });
 });
 
-// Task3: Get data about a genre
+// READ genre description by genre name
+/**
+ * GET: Returns data about a genre (description) by name/title (e.g., "Fantasy")
+ * Request body: Bearer token
+ * @param Name (of genre)
+ * @returns genre object
+ * @requires passport
+ */
 app.get("/movies/genre/:genreName", passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.find({"Genre.Name": req.params.genreName})
         .then((genre) => {
@@ -80,7 +108,14 @@ app.get("/movies/genre/:genreName", passport.authenticate('jwt', {session: false
         });
 });
 
-// Task4: Get data about a director
+//READ about director by director name
+/**
+ * GET: Returns data about a director (bio, birth year) by name
+ * Request body: Bearer token
+ * @param Name (of director)
+ * @returns director object
+ * @requires passport
+ */
 app.get("/movies/director/:directorName", passport.authenticate('jwt', {session: false}), (req, res) => {
     Movies.find({"Director.Name": req.params.directorName})
         .then((director) => {
@@ -93,7 +128,14 @@ app.get("/movies/director/:directorName", passport.authenticate('jwt', {session:
 });
 
 
-// Get one User by username
+// READ user by Username
+/**
+ * GET: Returns data on a single user (user object) by username
+ * Request body: Bearer token
+ * @param Username
+ * @returns user object
+ * @requires passport
+ */
 app.get("/user/:username", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOne( {Username: req.params.Username})
         .then((user) => {
@@ -106,15 +148,22 @@ app.get("/user/:username", passport.authenticate('jwt', {session: false}), (req,
 });
 
 
-// Task5: User exists or has to send credentials
-app.post("/users", [
+// CREATE a new user
+/**
+ * POST: Allow new users to register, Username password & Email are required fields!
+ * Request body: Bearer token, JSON with user information
+ * @returns user object
+ */
+app.post("/users", 
+    // Validation logic here for post request
+    [
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
     ],
-    (req,res)=>{
 
+    (req,res)=>{
     // check the validation object for errors
     let errors = validationResult(req);
 
@@ -151,7 +200,14 @@ app.post("/users", [
 
 
 
-// Get ALL user
+// READ user by Username
+/**
+ * GET: Returns data on a single user (user object) by username
+ * Request body: Bearer token
+ * @param Username
+ * @returns user object
+ * @requires passport
+ */
 app.get("/users", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.find()
         .then((users) => {
@@ -163,8 +219,14 @@ app.get("/users", passport.authenticate('jwt', {session: false}), (req, res) => 
 });
 
 
-
-// Task6: Update a users info by its Username
+// UPDATE username of the user by username
+/**
+ * PUT: Allow users to update their user info (find by username)
+ * Request body: Bearer token, updated user info
+ * @param Username
+ * @returns user object with updates
+ * @requires passport
+ */
 app.patch("/users/:Username", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate({Username: req.params.Username},
         { $set:{
@@ -187,6 +249,13 @@ app.patch("/users/:Username", passport.authenticate('jwt', {session: false}), (r
 });
 
 // Task7: add a movie to a users favorite list
+// Add favorite movie to a users favorite list
+/**
+ * POST: Adds a favorite movies to the user list
+ * @param Username
+ * @returns array of favorite movies
+ * @requires passport
+ */
 app.post("/users/:Username/movies/:MovieID", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate({Username: req.params.Username},
         {
@@ -204,7 +273,15 @@ app.post("/users/:Username/movies/:MovieID", passport.authenticate('jwt', {sessi
         });
 });
 
-// Task8: Remove a movie from a users favorite list
+// DELETE a movie from user favoriteMovies list by username
+/**
+ * DELETE: Allows users to remove a movie from their list of favorites
+ * Request body: Bearer token
+ * @param Username
+ * @param movieId
+ * @returns user object
+ * @requires passport
+ */
 app.delete("/users/:Username/movie/:MovieID", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate({Username: req.params.Username},
      {
@@ -222,7 +299,14 @@ app.delete("/users/:Username/movie/:MovieID", passport.authenticate('jwt', {sess
      });
 });
 
-// Task9: remove user from user list
+// DELETE a user by username
+/**
+ * DELETE: Allows existing users to deregister
+ * Request body: Bearer token
+ * @param Username
+ * @returns success message
+ * @requires passport
+ */
 app.delete("/users/:Username", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndRemove({Username: req.params.Username})
         .then((user) => {
@@ -239,10 +323,11 @@ app.delete("/users/:Username", passport.authenticate('jwt', {session: false}), (
         });
 });
 
-/*app.listen(8080, () => {
-    console.log("Listening on port 8080");
-});*/
 
+
+/**
+ * defines port, listening to port 8080
+ */
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
  console.log('Listening on Port ' + port);
