@@ -273,6 +273,37 @@ app.post("/users/:Username/movies/:MovieID", passport.authenticate('jwt', {sessi
         });
 });
 
+
+
+// GET favorite movies list from a user
+/**
+ * GET: Returns a list of favorite movies from the user
+ * Request body: Bearer token
+ * @param Username
+ * @returns array of favorite movies
+ * @requires passport
+ */
+app.get(
+  '/users/:Username/movies',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Users.findOne({ Username: req.params.Username })
+      .then((user) => {
+        if (user) {
+          // If a user with the corresponding username was found, return user info
+          res.status(200).json(user.FavoriteMovies);
+        } else {
+          res.status(400).send('Could not find favorite movies for this user');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  }
+);
+
+
 // DELETE a movie from user favoriteMovies list by username
 /**
  * DELETE: Allows users to remove a movie from their list of favorites
