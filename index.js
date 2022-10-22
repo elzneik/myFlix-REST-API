@@ -227,7 +227,7 @@ app.get("/users", passport.authenticate('jwt', {session: false}), (req, res) => 
  * @returns user object with updates
  * @requires passport
  */
-app.patch("/users/:Username", passport.authenticate('jwt', {session: false}), (req, res) => {
+app.put("/users/:Username", passport.authenticate('jwt', {session: false}), (req, res) => {
     Users.findOneAndUpdate({Username: req.params.Username},
         { $set:{
             Username: req.body.Username,
